@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-overlay: var(--bg-overlay);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-muted: var(--accent-muted);
+  --color-danger: var(--danger);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+}
+
+@layer base {
+  :root {
+    /* Light mode — refined enterprise */
+    --bg: oklch(99% 0 0);
+    --bg-elevated: oklch(98% 0 0);
+    --bg-overlay: oklch(96% 0 0);
+    --fg: oklch(18% 0 0);
+    --fg-muted: oklch(45% 0 0);
+    --fg-subtle: oklch(65% 0 0);
+    --border: oklch(92% 0 0);
+    --border-strong: oklch(85% 0 0);
+
+    /* Teal accent — AI moments */
+    --accent: oklch(60% 0.12 195);
+    --accent-fg: oklch(98% 0 0);
+    --accent-muted: oklch(92% 0.04 195);
+
+    --danger: oklch(58% 0.18 25);
+    --warning: oklch(72% 0.15 75);
+    --success: oklch(60% 0.14 155);
+  }
+
+  .dark,
+  :root[data-theme="dark"] {
+    --bg: oklch(14% 0.005 250);
+    --bg-elevated: oklch(18% 0.008 250);
+    --bg-overlay: oklch(22% 0.01 250);
+    --fg: oklch(96% 0 0);
+    --fg-muted: oklch(70% 0.005 250);
+    --fg-subtle: oklch(50% 0.008 250);
+    --border: oklch(26% 0.012 250);
+    --border-strong: oklch(36% 0.014 250);
+
+    --accent: oklch(70% 0.13 195);
+    --accent-fg: oklch(14% 0.01 195);
+    --accent-muted: oklch(28% 0.04 195);
+
+    --danger: oklch(65% 0.18 25);
+    --warning: oklch(78% 0.14 75);
+    --success: oklch(70% 0.14 155);
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    color-scheme: dark light;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "cv11", "ss01", "ss03";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--accent-muted);
+    color: var(--fg);
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 3px;
+  }
+
+  /* Subtle grid background for empty states */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--border) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+}
